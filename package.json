@@ -1,0 +1,25 @@
+{
+  "name": "imdb-movies-express-react",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "heroku-postbuild": "npm install --prefix react-ui && npm run build --prefix react-ui",
+    "separate-server-dev": "NODE_ENV=development concurrently \"npx kill-port 9001 && nodemon app.js\" \"npm start --prefix react-ui\"",
+    "static-build-dev": "npm install --prefix react-ui && npm run build --prefix react-ui && NODE_ENV=development node app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^6.2.1",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "standard": "^16.0.3"
+  }
+}
