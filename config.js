@@ -7,6 +7,8 @@ const env = process.env
  *
  *
  *  NOTICE: Prefer connectionString over individual properties because deploying to Heroku.
+ *
+ *
  */
 
 const development = {
@@ -14,7 +16,7 @@ const development = {
     port: 9001
   },
   database: {
-    connectionString: `postgresql://postgres:123@localhost:5432/postgres-imdb-movies`
+    connectionString: 'postgresql://postgres:123@localhost:5432/postgres-imdb-movies'
   }
 }
 

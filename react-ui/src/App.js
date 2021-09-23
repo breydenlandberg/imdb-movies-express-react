@@ -1,8 +1,11 @@
-import Component from './Component'
+import RouterComponent from './components/RouterComponent'
 
+/*
+ *  Entry point to React application.
+ */
 function App () {
   return (
-    <Component />
+    <RouterComponent />
   )
 }
 

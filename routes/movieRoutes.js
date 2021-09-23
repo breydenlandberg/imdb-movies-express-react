@@ -1,11 +1,12 @@
+/*
+ *  Setup.
+ */
 const express = require('express')
 const config = require('../config')
 const { Client } = require('pg')
 const sqlQueries = require('../sqlQueries')
 
 const router = express.Router()
-
-const { user, password, host, port, database } = config.database
 
 /*
  *  Client.
@@ -24,8 +25,11 @@ const connectToDatabase = async () => {
 connectToDatabase()
 console.log('Connected to local Postgres database!')
 
-router.get('/api/movies', async (request, response) => {
-  console.log(`Querying the Postgres database with: ${sqlQueries.default.moviesQuery}`)
+/*
+ *  Get movies using default movies query.
+ */
+router.get('/', async (request, response) => {
+  console.log(`Querying the Postgres database with: ${sqlQueries.default.allMoviesQuery}`)
 
   await client.query(sqlQueries.default.moviesQuery, (error, results) => {
     if (error) {
@@ -34,5 +38,21 @@ router.get('/api/movies', async (request, response) => {
     return response.status(200).json(results.rows)
   })
 })
+
+/*
+ *  Get movie by id using default movie id query.
+ */
+// router.get('/:id', async (request, response) => {
+//   console.log(`Querying the Postgres database with: ${sqlQueries.default.singleMovieQuery}`)
+
+//   const id = request.params.id
+
+//   await client.query(sqlQueries.default.singleMovieQuery, (error, results) => {
+//     if (error) {
+//       throw error
+//     }
+//     return response.status(200).json(results.rows)
+//   })
+// })
 
 module.exports = router

@@ -13,11 +13,8 @@ app.use(cors())
 app.use(express.json())
 app.use(express.static('react-ui/build'))
 
-/*
- *  Environment variable.
- */
+// Environment variable.
 const env = process.env
-console.log(env.NODE_ENV)
 
 /*
  *
@@ -29,7 +26,7 @@ app.get('/', (request, response) => {
 /*
  *  Movie routes.
  */
-app.use(movieRoutes)
+app.use('/api/movies', movieRoutes)
 
 app.listen(config.app.port, () => {
   console.log(`Application is running on port ${config.app.port}`)
