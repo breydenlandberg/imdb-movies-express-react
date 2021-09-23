@@ -1,8 +1,8 @@
 const Component = () => {
   const variable = 'I am working.'
-  
+
   return (
-    <h1> Hello. Build says: {variable} </h1>
+    <h1> Hello. React frontend says: {variable} </h1>
   )
 }
 

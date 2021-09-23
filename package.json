@@ -1,7 +1,7 @@
 {
   "name": "imdb-movies-express-react",
   "version": "1.0.0",
-  "description": "",
+  "description": "imdb-movies postgresql-express-react-bulma-node app",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
@@ -10,8 +10,8 @@
     "static-build-dev": "npm install --prefix react-ui && npm run build --prefix react-ui && NODE_ENV=development node app.js"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "breydenlandberg",
+  "license": "MIT",
   "dependencies": {
     "concurrently": "^6.2.1",
     "cors": "^2.8.5",
