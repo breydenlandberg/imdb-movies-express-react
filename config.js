@@ -3,16 +3,18 @@
  */
 const env = process.env
 
+/*
+ *
+ *
+ *  NOTICE: Prefer connectionString over individual properties because deploying to Heroku.
+ */
+
 const development = {
   app: {
     port: 9001
   },
   database: {
-    user: 'postgres',
-    password: '123',
-    host: 'localhost',
-    port: 5432,
-    database: 'postgres-imdb-movies'
+    connectionString: `postgresql://postgres:123@localhost:5432/postgres-imdb-movies`
   }
 }
 
@@ -21,11 +23,7 @@ const production = {
     port: env.PORT
   },
   database: {
-    user: env.DB_USER,
-    password: env.DB_PASSWORD,
-    host: env.DB_HOST,
-    port: env.DB_PORT,
-    database: env.DB_NAME
+    connectionString: env.DATABASE_URL
   }
 }
 

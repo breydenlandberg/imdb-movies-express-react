@@ -11,7 +11,7 @@ const { user, password, host, port, database } = config.database
  *  Client.
  */
 const client = new Client({
-  connectionString: `postgresql://${user}:${password}@${host}:${port}/${database}`
+  connectionString: config.database.connectionString
 })
 
 /*

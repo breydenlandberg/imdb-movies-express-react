@@ -1,7 +1,7 @@
 {
   "name": "imdb-movies-express-react",
   "version": "1.0.0",
-  "description": "imdb-movies postgresql-express-react-bulma-node app",
+  "description": "IMDb movies postgresql-express-react-bulma-node-heroku app",
   "main": "index.js",
   "scripts": {
     "start": "node app.js",
