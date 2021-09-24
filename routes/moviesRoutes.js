@@ -4,7 +4,7 @@
 const express = require('express')
 const config = require('../config')
 const { Client } = require('pg')
-const sqlQueries = require('../sqlQueries')
+const sqlQueries = require('../sql-queries/sqlQueries')
 
 const router = express.Router()
 
@@ -31,7 +31,7 @@ console.log('Connected to local Postgres database!')
 router.get('/', async (request, response) => {
   console.log(`Querying the Postgres database with: ${sqlQueries.default.allMoviesQuery}`)
 
-  await client.query(sqlQueries.default.moviesQuery, (error, results) => {
+  await client.query(sqlQueries.default.allMoviesQuery, (error, results) => {
     if (error) {
       throw error
     }
