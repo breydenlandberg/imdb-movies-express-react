@@ -5,7 +5,9 @@ const express = require('express')
 const config = require('./config')
 const cors = require('cors')
 const path = require('path')
-const movieRoutes = require('./routes/movieRoutes')
+const moviesRoutes = require('./routes/moviesRoutes')
+const namesRoutes = require('./routes/namesRoutes')
+const principalsRoutes = require('./routes/principalsRoutes')
 
 const app = express()
 
@@ -26,7 +28,7 @@ app.get('/', (request, response) => {
 /*
  *  Movie routes.
  */
-app.use('/api/movies', movieRoutes)
+app.use('/api/movies', moviesRoutes)
 
 app.listen(config.app.port, () => {
   console.log(`Application is running on port ${config.app.port}`)

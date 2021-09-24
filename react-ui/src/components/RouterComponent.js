@@ -12,29 +12,29 @@ import Home from './Home'
 const RouterComponent = () => {
   return (
     <Router>
-      <div>
-        <nav>
-          <ul>
-            <li>
-              <Link to='/'> Home </Link>
-            </li>
+      <nav class='navbar' role='navigation' aria-label='main navigation'>
+        <div class='navbar-brand'>
+          <a class='navbar-item' href='/'>
+            <img src='https://bulma.io/images/bulma-logo.png' width='112' height='28' />
+          </a>
+        </div>
 
-            <li>
-              <Link to='/movies'> All IMDb Movies </Link>
-            </li>
+        <div id='navbarMain' class='navbar-menu'>
+          <div class='navbar-start'>
+            <Link to='/' class='navbar-item'> Home </Link>
 
-            <li>
-              <Link to='/names'> All IMDb Names </Link>
-            </li>
+            <Link to='/movies' class='navbar-item'> All IMDb Movies </Link>
+
+            <Link to='/names' class='navbar-item'> All IMDb Names </Link>
 
             <Switch>
               <Route path='/'>
                 <Home />
               </Route>
             </Switch>
-          </ul>
-        </nav>
-      </div>
+          </div>
+        </div>
+      </nav>
     </Router>
   )
 }
