@@ -2,57 +2,43 @@
  *  Setup.
  */
 const express = require('express')
-const config = require('../config')
-const { Client } = require('pg')
-const sqlQueries = require('../sql-queries/sqlQueries')
+const database = require('../database')
 
 const router = express.Router()
 
-/*
- *  Client.
- */
-const client = new Client({
-  connectionString: config.database.connectionString
-})
+const client = database.client
 
 /*
- *  Connect to database.
- */
-const connectToDatabase = async () => {
-  return await client.connect()
-}
-
-connectToDatabase()
-console.log('Connected to local Postgres database!')
-
-/*
- *  Get movies using default movies query.
+ *  Get all movies resources using default movies query.
  */
 router.get('/', async (request, response) => {
-  console.log(`Querying the Postgres database with: ${sqlQueries.default.allMoviesQuery}`)
+  const defaultAllMoviesQuery = 'SELECT * FROM imdb_movies FETCH FIRST 10000 ROWS ONLY'
 
-  await client.query(sqlQueries.default.allMoviesQuery, (error, results) => {
+  console.log(`Querying the Postgres database with: ${defaultAllMoviesQuery}`)
+
+  await client.query(defaultAllMoviesQuery, (error, results) => {
     if (error) {
-      throw error
+      console.error(error)
     }
     return response.status(200).json(results.rows)
   })
 })
 
 /*
- *  Get movie by id using default movie id query.
+ *  Get single movie resource by id using default movie id query.
  */
-// router.get('/:id', async (request, response) => {
-//   console.log(`Querying the Postgres database with: ${sqlQueries.default.singleMovieQuery}`)
+router.get('/:id', async (request, response) => {
+  const id = request.params.id
+  const defaultSingleMovieQuery = `SELECT * FROM imdb_movies WHERE movie_id LIKE \'${id}\'`
 
-//   const id = request.params.id
+  console.log(`Querying the Postgres database with: ${defaultSingleMovieQuery}`)
 
-//   await client.query(sqlQueries.default.singleMovieQuery, (error, results) => {
-//     if (error) {
-//       throw error
-//     }
-//     return response.status(200).json(results.rows)
-//   })
-// })
+  await client.query(defaultSingleMovieQuery, (error, results) => {
+    if (error) {
+      console.error(error)
+    }
+    return response.status(200).json(results.rows)
+  })
+})
 
 module.exports = router

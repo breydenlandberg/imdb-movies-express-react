@@ -14,6 +14,8 @@ function App () {
       .catch((error) => console.error(error))
   }, [])
 
+  console.log(movies)
+
   const MoviesContext = React.createContext(movies)
 
   return (
