@@ -27,9 +27,10 @@ router.get('/', async (request, response) => {
 /*
  *  Get single movie resource by id using default movie id query.
  */
-router.get('/:id', async (request, response) => {
-  const id = request.params.id
-  const defaultSingleMovieQuery = `SELECT * FROM imdb_movies WHERE movie_id LIKE \'${id}\'`
+router.get('/:movie_id', async (request, response) => {
+  const movie_id = request.params.movie_id
+
+  const defaultSingleMovieQuery = `SELECT * FROM imdb_movies WHERE movie_id LIKE '${movie_id}'`
 
   console.log(`Querying the Postgres database with: ${defaultSingleMovieQuery}`)
 

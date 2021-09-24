@@ -18,4 +18,4 @@ const connect = async () => {
   return await client.connect()
 }
 
-module.exports = {client, connect}
+module.exports = { client, connect }
