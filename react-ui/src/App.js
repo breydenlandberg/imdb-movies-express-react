@@ -16,21 +16,17 @@ const App = () => {
       .catch((error) => console.error(error))
   }, [])
 
-  console.log(movies)
-
   useEffect(() => {
     namesService.getDefaultAllNames()
-      .then((names) => setMovies(names))
+      .then((names) => setNames(names))
       .catch((error) => console.error(error))
   }, [])
-
-  console.log(names)
 
   /*
    *  Why props drilling instead of using Context API?
    */
   return (
-    <RouterComponent />
+    <RouterComponent movies={movies} names={names} />
   )
 }
 

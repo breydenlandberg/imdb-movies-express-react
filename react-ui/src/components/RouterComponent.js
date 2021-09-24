@@ -11,7 +11,7 @@ import Names from './Names'
 /*
  *  CONTEXT! CONTEXT!! CONTEXT!!!
  */
-const RouterComponent = () => {
+const RouterComponent = ({ movies, names }) => {
   return (
     <Router>
       <nav class='navbar' role='navigation' aria-label='main navigation'>
@@ -30,12 +30,16 @@ const RouterComponent = () => {
             <Link to='/names' class='navbar-item'> Names </Link>
 
             <Switch>
+              <Route path='/movies/:movie_id' />
+
               <Route path='/movies'>
-                <Movies />
+                <Movies data={movies} />
               </Route>
 
+              <Route path='/names/:name_id' />
+
               <Route path='/names'>
-                <Names />
+                <Names data={names} />
               </Route>
 
               <Route path='/'>
