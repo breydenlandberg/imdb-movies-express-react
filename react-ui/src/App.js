@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react'
 import moviesService from './services/moviesService'
+import namesService from './services/namesService'
 import RouterComponent from './components/RouterComponent'
 
 /*
  *  Entry point to React application.
  */
-function App () {
-  const [movies, setMovies] = useState([])
+const App = () => {
+  const [movies, setMovies] = useState(undefined)
+  const [names, setNames] = useState(undefined)
 
   useEffect(() => {
     moviesService.getDefaultAllMovies()
@@ -16,10 +18,19 @@ function App () {
 
   console.log(movies)
 
-  const MoviesContext = React.createContext(movies)
+  useEffect(() => {
+    namesService.getDefaultAllNames()
+      .then((names) => setMovies(names))
+      .catch((error) => console.error(error))
+  }, [])
 
+  console.log(names)
+
+  /*
+   *  Why props drilling instead of using Context API?
+   */
   return (
-    <RouterComponent movies={movies} />
+    <RouterComponent />
   )
 }
 

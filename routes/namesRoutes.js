@@ -3,10 +3,9 @@
  */
 const express = require('express')
 const database = require('../database')
+const client = database.client
 
 const router = express.Router()
-
-const client = database.client
 
 /*
  *  Get all names resources using default names query.

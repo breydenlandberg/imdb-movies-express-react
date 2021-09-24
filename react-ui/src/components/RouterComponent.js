@@ -5,7 +5,8 @@ import {
   Link
 } from 'react-router-dom'
 import Home from './Home'
-import Movies from './MoviesDisplay'
+import Movies from './Movies'
+import Names from './Names'
 
 /*
  *  CONTEXT! CONTEXT!! CONTEXT!!!
@@ -31,6 +32,10 @@ const RouterComponent = () => {
             <Switch>
               <Route path='/movies'>
                 <Movies />
+              </Route>
+
+              <Route path='/names'>
+                <Names />
               </Route>
 
               <Route path='/'>

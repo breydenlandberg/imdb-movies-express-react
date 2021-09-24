@@ -1,15 +1,14 @@
 import axios from 'axios'
 
-const baseURL = '/api/movies'
+const baseURL = '/api/names'
 
 /*
  *  .then promises instead of async/await? Why? Why not?
  */
-const getDefaultAllMovies = () => {
-  return axios
-    .get(baseURL)
+const getDefaultAllNames = () => {
+  return axios.get(baseURL)
     .then((response) => response.data)
     .catch((error) => console.error(error))
 }
 
-export default { getDefaultAllMovies }
+export default { getDefaultAllNames }
