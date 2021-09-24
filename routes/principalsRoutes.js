@@ -28,7 +28,7 @@ router.get('/', async (request, response) => {
  *  Get single principal resource by id using default principal id query.
  *
  *  INVESTIGATE ISSUES!!!
- * 
+ *
  */
 router.get('/:name_id/:name_order_index/:movie_id', async (request, response) => {
   const movie_id = request.params.movie_id
@@ -40,7 +40,7 @@ router.get('/:name_id/:name_order_index/:movie_id', async (request, response) =>
   console.log(`Querying the Postgres database with: ${defaultSinglePrincipalQuery}`)
 
   await client.query(defaultSinglePrincipalQuery, (error, results) => {
-    if(error) {
+    if (error) {
       console.error(error)
     }
     console.log(results)

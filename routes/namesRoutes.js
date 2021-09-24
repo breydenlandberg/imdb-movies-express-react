@@ -16,30 +16,30 @@ router.get('/', async (request, response) => {
 
   console.log(`Querying the Postgres database with: ${defaultAllNamesQuery}`)
 
-  await client.query(defaultAllNamesQuery, (error, results) => {
-    if (error) {
-      console.error(error)
-    }
-    return response.status(200).json(results.rows)
-  })
+  try {
+    const { rows } = await client.query(defaultAllNamesQuery)
+    return response.status(200).json(rows)
+  } catch (error) {
+    throw new Error(error)
+  }
 })
 
 /*
  *  Get single name resource by id using default name id query.
  */
-router.get('/:name_id=:name_id', async (request, response) => {
+router.get('/:name_id', async (request, response) => {
   const name_id = request.params.name_id
 
   const defaultSingleNameQuery = `SELECT * FROM imdb_names WHERE name_id LIKE '${name_id}'`
 
   console.log(`Querying the Postgres database with: ${defaultSingleNameQuery}`)
 
-  await client.query(defaultSingleNameQuery, (error, results) => {
-    if (error) {
-      console.error(error)
-    }
-    return response.status(200).json(results.rows)
-  })
+  try {
+    const { rows } = await client.query(defaultSingleNameQuery)
+    return response.status(200).json(rows)
+  } catch (error) {
+    throw new Error(error)
+  }
 })
 
 module.exports = router

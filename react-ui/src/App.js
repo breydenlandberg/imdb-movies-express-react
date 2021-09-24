@@ -19,7 +19,7 @@ function App () {
   const MoviesContext = React.createContext(movies)
 
   return (
-    <RouterComponent />
+    <RouterComponent movies={movies} />
   )
 }
 

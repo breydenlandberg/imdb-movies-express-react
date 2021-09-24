@@ -16,12 +16,12 @@ router.get('/', async (request, response) => {
 
   console.log(`Querying the Postgres database with: ${defaultAllMoviesQuery}`)
 
-  await client.query(defaultAllMoviesQuery, (error, results) => {
-    if (error) {
-      console.error(error)
-    }
-    return response.status(200).json(results.rows)
-  })
+  try {
+    const { rows } = await client.query(defaultAllMoviesQuery)
+    return response.status(200).json(rows)
+  } catch (error) {
+    throw new Error(error)
+  }
 })
 
 /*
@@ -34,12 +34,12 @@ router.get('/:movie_id', async (request, response) => {
 
   console.log(`Querying the Postgres database with: ${defaultSingleMovieQuery}`)
 
-  await client.query(defaultSingleMovieQuery, (error, results) => {
-    if (error) {
-      console.error(error)
-    }
-    return response.status(200).json(results.rows)
-  })
+  try {
+    const { rows } = await client.query(defaultSingleMovieQuery)
+    return response.status(200).json(rows)
+  } catch (error) {
+    throw new Error(error)
+  }
 })
 
 module.exports = router

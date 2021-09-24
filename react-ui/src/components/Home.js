@@ -3,7 +3,7 @@
  */
 const Home = () => {
   return (
-    <h1> Welcome to the IMDb Movies Web Application by Breyden </h1>
+    <h1> HOME </h1>
   )
 }
 

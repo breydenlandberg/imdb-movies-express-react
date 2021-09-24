@@ -5,9 +5,10 @@ import {
   Link
 } from 'react-router-dom'
 import Home from './Home'
+import Movies from './MoviesDisplay'
 
 /*
- *
+ *  CONTEXT! CONTEXT!! CONTEXT!!!
  */
 const RouterComponent = () => {
   return (
@@ -23,11 +24,15 @@ const RouterComponent = () => {
           <div class='navbar-start'>
             <Link to='/' class='navbar-item'> Home </Link>
 
-            <Link to='/movies' class='navbar-item'> All IMDb Movies </Link>
+            <Link to='/movies' class='navbar-item'> Movies </Link>
 
-            <Link to='/names' class='navbar-item'> All IMDb Names </Link>
+            <Link to='/names' class='navbar-item'> Names </Link>
 
             <Switch>
+              <Route path='/movies'>
+                <Movies />
+              </Route>
+
               <Route path='/'>
                 <Home />
               </Route>
