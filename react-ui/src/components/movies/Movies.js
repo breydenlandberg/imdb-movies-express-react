@@ -1,6 +1,6 @@
 import MovieLink from './MovieLink'
 
-const MoviesPage = ({ data }) => {
+const Movies = ({ data, moviesAttributes }) => {
   return (
     <div>
       <section class='section is-large has-background-black-bis'>
@@ -15,11 +15,17 @@ const MoviesPage = ({ data }) => {
 
       <section class='section has-background-black-bis'>
         {data.map((movie) =>
-          <MovieLink data={movie} />
+          <MovieLink
+            data={movie}
+            movieAttributes={
+              moviesAttributes.find(
+                (movieAttributes) => movieAttributes.movie_id === movie.movie_id)
+              }
+          />
         )}
       </section>
     </div>
   )
 }
 
-export default MoviesPage
+export default Movies

@@ -4,7 +4,14 @@ import { Link } from 'react-router-dom'
  *  Any way to compose/structure this better?
  */
 const NameLink = ({ data }) => {
-  const { name_id, current_name, birth_name, biography, birth_details, death_details } = data
+  const {
+    name_id,
+    current_name,
+    birth_name,
+    biography,
+    birth_details,
+    death_details
+  } = data
 
   return (
     <div class='columns py-3'>

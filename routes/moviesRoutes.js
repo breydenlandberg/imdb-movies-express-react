@@ -11,7 +11,7 @@ const router = express.Router()
  *  Get all movies resources using default movies query.
  */
 router.get('/', async (request, response) => {
-  const getAllMoviesQuery = 'SELECT * FROM imdb_movies ORDER BY movie_avg_vote DESC, movie_votes DESC FETCH FIRST 100 ROWS ONLY'
+  const getAllMoviesQuery = 'SELECT * FROM imdb_movies WHERE movie_critic_reviews IS NOT NULL ORDER BY movie_critic_reviews DESC FETCH FIRST 100 ROWS ONLY'
 
   console.log(`Querying the Postgres database with: ${getAllMoviesQuery}`)
 
@@ -30,18 +30,22 @@ router.get('/', async (request, response) => {
 /*
  *  Get single movie resource by title using default movie title query (used for searches by movie title).
  */
-router.get('/movie-attributes', async (request, response) => {
-  const getAllMovieAttributesQuery = 'SELECT * FROM movie_attributes'
+router.get('/movies-attributes', async (request, response) => {
+  const getAllMoviesAttributesQuery = 'SELECT * FROM movie_attributes'
 
-  console.log(`Querying the Postgres database with: ${getAllMovieAttributesQuery}`)
+  console.log(`Querying the Postgres database with: ${getAllMoviesAttributesQuery}`)
 
   try {
-    const { rows } = await client.query(getAllMovieAttributesQuery)
+    const { rows } = await client.query(getAllMoviesAttributesQuery)
     return response.status(200).json(rows)
   } catch (error) {
     throw new Error(error)
   }
 })
+
+/*
+ *  movie_attributes table SQL queries above here.
+ */
 
 /*
  *  Get single movie resource by id using default movie id query.
@@ -55,23 +59,6 @@ router.get('/:movie_id', async (request, response) => {
 
   try {
     const { rows } = await client.query(getMovieLikeIdQuery)
-    return response.status(200).json(rows)
-  } catch (error) {
-    throw new Error(error)
-  }
-})
-
-/*
- *  Get single movie resource by title using default movie title query (used for searches by movie title).
- */
-router.get('/', async (request, response) => {
-  const movie_title = request.query.movie_title
-  const getMoviesLikeTitleQuery = `SELECT * FROM imdb_movies WHERE movie_title LIKE '%${movie_title}'%`
-
-  console.log(`Querying the Postgres database with: ${getMoviesLikeTitleQuery}`)
-
-  try {
-    const { rows } = await client.query(getMoviesLikeTitleQuery)
     return response.status(200).json(rows)
   } catch (error) {
     throw new Error(error)

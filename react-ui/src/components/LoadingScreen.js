@@ -1,6 +1,6 @@
 const LoadingScreen = () => {
   return (
-    <h1> *Elevator music* </h1>
+    <div class='pageloader'><span class='title'>Pageloader</span></div>
   )
 }
 

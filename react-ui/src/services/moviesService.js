@@ -15,11 +15,11 @@ const getDefaultAllMovies = () => {
 /*
  *  Movie attributes.
  */
-const getDefaultAllMovieAttributes = () => {
+const getDefaultAllMoviesAttributes = () => {
   return axios
-    .get(`${baseURL}/movie-attributes`)
+    .get(`${baseURL}/movies-attributes`)
     .then((response) => response.data)
     .catch((error) => console.log(error))
 }
 
-export default { getDefaultAllMovies, getDefaultAllMovieAttributes }
+export default { getDefaultAllMovies, getDefaultAllMoviesAttributes }
