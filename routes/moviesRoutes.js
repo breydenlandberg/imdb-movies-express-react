@@ -11,12 +11,32 @@ const router = express.Router()
  *  Get all movies resources using default movies query.
  */
 router.get('/', async (request, response) => {
-  const getAllMoviesQuery = 'SELECT * FROM imdb_movies ORDER BY movie_votes DESC FETCH FIRST 10000 ROWS ONLY'
+  const getAllMoviesQuery = 'SELECT * FROM imdb_movies ORDER BY movie_avg_vote DESC, movie_votes DESC FETCH FIRST 100 ROWS ONLY'
 
   console.log(`Querying the Postgres database with: ${getAllMoviesQuery}`)
 
   try {
     const { rows } = await client.query(getAllMoviesQuery)
+    return response.status(200).json(rows)
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
+/*
+ *  movie_attributes table SQL queries below here.
+ */
+
+/*
+ *  Get single movie resource by title using default movie title query (used for searches by movie title).
+ */
+router.get('/movie-attributes', async (request, response) => {
+  const getAllMovieAttributesQuery = 'SELECT * FROM movie_attributes'
+
+  console.log(`Querying the Postgres database with: ${getAllMovieAttributesQuery}`)
+
+  try {
+    const { rows } = await client.query(getAllMovieAttributesQuery)
     return response.status(200).json(rows)
   } catch (error) {
     throw new Error(error)

@@ -11,7 +11,7 @@ const router = express.Router()
  *  Get all names resources using default names query.
  */
 router.get('/', async (request, response) => {
-  const defaultAllNamesQuery = 'SELECT * FROM imdb_names FETCH FIRST 10000 ROWS ONLY'
+  const defaultAllNamesQuery = 'SELECT * FROM imdb_names FETCH FIRST 100 ROWS ONLY'
 
   console.log(`Querying the Postgres database with: ${defaultAllNamesQuery}`)
 

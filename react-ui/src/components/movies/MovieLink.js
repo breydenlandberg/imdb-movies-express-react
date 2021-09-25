@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom'
 
 /*
- *  Any way to compose/structure this better?
+ *  Any way to compose/structure this better? MovieLink and MoviePage as one? Perhaps use Higher Order Component?
  */
-const MovieLink = ({ data }) => {
+const MovieLink = ({ data, movieAttributes }) => {
   const { movie_id, movie_title, movie_release_year, movie_duration, movie_production_company, movie_description, movie_avg_vote, movie_votes, movie_user_reviews, movie_critic_reviews } = data
 
   return (
@@ -29,14 +29,15 @@ const MovieLink = ({ data }) => {
               {movie_title}
             </Link>
           </p>
-
-          <p class='subtitle is-5 has-text-grey'> Subtitle </p>
+          <p class='subtitle is-5 has-text-grey'> Released in {movie_release_year} </p>
+          <p class='subtitle is-5 has-text-grey'> {movie_description} </p>
+          <p class='subtitle is-5 has-text-grey'> Number of votes: {movie_votes} | Average vote score: {movie_avg_vote} | Number of user reviews: {movie_user_reviews} | Number of critic reviews: {movie_critic_reviews} </p>
         </div>
       </div>
 
       <div class='column'>
         <div class='box has-background-black-ter'>
-          <p class='title is-3 has-text-light'> movie_attributes </p>
+          <p class='title is-3 has-text-light'> Additional movie information </p>
           <p class='subtitle is-5 has-text-grey'> Subtitle </p>
         </div>
       </div>

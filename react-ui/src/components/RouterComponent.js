@@ -13,7 +13,7 @@ import Names from './names/Names'
 /*
  *  CONTEXT! CONTEXT!! CONTEXT!!!
  */
-const RouterComponent = ({ movies, names }) => {
+const RouterComponent = ({ movies, movieAttributes, names }) => {
   return (
     <Router>
       <nav class='navbar is-primary' role='navigation' aria-label='main navigation'>
