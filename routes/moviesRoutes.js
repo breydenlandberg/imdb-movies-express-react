@@ -11,7 +11,7 @@ const router = express.Router()
  *  Get all movies resources using default movies query.
  */
 router.get('/', async (request, response) => {
-  const getAllMoviesQuery = 'SELECT * FROM imdb_movies FETCH FIRST 10000 ROWS ONLY'
+  const getAllMoviesQuery = 'SELECT * FROM imdb_movies ORDER BY movie_votes DESC FETCH FIRST 10000 ROWS ONLY'
 
   console.log(`Querying the Postgres database with: ${getAllMoviesQuery}`)
 
@@ -26,8 +26,8 @@ router.get('/', async (request, response) => {
 /*
  *  Get single movie resource by id using default movie id query.
  */
-router.get('/', async (request, response) => {
-  const movie_id = request.query.movie_id
+router.get('/:movie_id', async (request, response) => {
+  const movie_id = request.params.movie_id // request.query.movie_id
 
   const getMovieLikeIdQuery = `SELECT * FROM imdb_movies WHERE movie_id LIKE '${movie_id}'`
 

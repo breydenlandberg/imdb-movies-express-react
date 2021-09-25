@@ -29,6 +29,7 @@ const MovieLink = ({ data }) => {
               {movie_title}
             </Link>
           </p>
+
           <p class='subtitle is-5 has-text-grey'> Subtitle </p>
         </div>
       </div>

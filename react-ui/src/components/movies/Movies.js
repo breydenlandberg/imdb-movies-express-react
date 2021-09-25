@@ -7,6 +7,7 @@ const MoviesPage = ({ data }) => {
         <div class='columns is-centered is-full'>
           <p class='title is-1 has-text-light'> IMDb Movies Page </p>
         </div>
+
         <div class='columns is-centered is-full'>
           <p class='subtitle is-3 has-text-light'> with subtitle text... </p>
         </div>
