@@ -1,10 +1,10 @@
-import Name from './Name'
+import NameLink from './NameLink'
 
 const Names = ({ data }) => {
   return (
     <div>
       {data.map((name) =>
-        <Name data={name} />
+        <NameLink data={name} />
       )}
     </div>
   )

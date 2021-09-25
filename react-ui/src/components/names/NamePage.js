@@ -2,7 +2,7 @@ import { useLocation } from 'react-router-dom'
 
 const NamePage = () => {
   const data = useLocation()
-  const nameData = data.nameProps.data
+  const nameData = data.nameProps
   const { name_id, current_name, birth_name, biography, birth_details, death_details } = nameData
 
   return (

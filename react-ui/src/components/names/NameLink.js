@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 /*
  *  Any way to compose/structure this better?
  */
-const Name = ({ data }) => {
+const NameLink = ({ data }) => {
   const { name_id, current_name, birth_name, biography, birth_details, death_details } = data
 
   return (
@@ -13,10 +13,16 @@ const Name = ({ data }) => {
           <Link to={{
             pathname: `names/${name_id}`,
             nameProps: {
-              data
+              name_id,
+              current_name,
+              birth_name,
+              biography,
+              birth_details,
+              death_details
             }
           }}
-          > {current_name}
+          >
+            {current_name}
           </Link>
           {birth_name}
           {biography}
@@ -28,4 +34,4 @@ const Name = ({ data }) => {
   )
 }
 
-export default Name
+export default NameLink

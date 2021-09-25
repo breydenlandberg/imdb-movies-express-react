@@ -5,8 +5,10 @@ import {
   Link
 } from 'react-router-dom'
 import Home from './Home'
-import Movies from './Movies'
-import Names from './Names'
+import MoviePage from './movies/MoviePage'
+import Movies from './movies/Movies'
+import NamePage from './names/NamePage'
+import Names from './names/Names'
 
 /*
  *  CONTEXT! CONTEXT!! CONTEXT!!!
@@ -14,41 +16,33 @@ import Names from './Names'
 const RouterComponent = ({ movies, names }) => {
   return (
     <Router>
-      <nav class='navbar' role='navigation' aria-label='main navigation'>
-        <div class='navbar-brand'>
-          <a class='navbar-item' href='/'>
-            <img src='https://bulma.io/images/bulma-logo.png' width='112' height='28' />
-          </a>
-        </div>
+      <Link to='/' class='navbar-item'> Home </Link>
 
-        <div id='navbarMain' class='navbar-menu'>
-          <div class='navbar-start'>
-            <Link to='/' class='navbar-item'> Home </Link>
+      <Link to='/movies' class='navbar-item'> Movies </Link>
 
-            <Link to='/movies' class='navbar-item'> Movies </Link>
+      <Link to='/names' class='navbar-item'> Names </Link>
 
-            <Link to='/names' class='navbar-item'> Names </Link>
+      <Switch>
+        <Route path='/movies/:movie_id'>
+          <MoviePage data={movies} />
+        </Route>
 
-            <Switch>
-              <Route path='/movies/:movie_id' />
+        <Route path='/movies'>
+          <Movies data={movies} />
+        </Route>
 
-              <Route path='/movies'>
-                <Movies data={movies} />
-              </Route>
+        <Route path='/names/:name_id'>
+          <NamePage data={names} />
+        </Route>
 
-              <Route path='/names/:name_id' />
+        <Route path='/names'>
+          <Names data={names} />
+        </Route>
 
-              <Route path='/names'>
-                <Names data={names} />
-              </Route>
-
-              <Route path='/'>
-                <Home />
-              </Route>
-            </Switch>
-          </div>
-        </div>
-      </nav>
+        <Route path='/'>
+          <Home />
+        </Route>
+      </Switch>
     </Router>
   )
 }
