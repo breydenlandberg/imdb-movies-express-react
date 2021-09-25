@@ -16,19 +16,19 @@ import Names from './names/Names'
 const RouterComponent = ({ movies, names }) => {
   return (
     <Router>
-      <nav class='navbar is-primary is-fixed-top' role='navigation' aria-label='main navigation'>
+      <nav class='navbar is-primary' role='navigation' aria-label='main navigation'>
         <div class='navbar-brand'>
           <a class='navbar-item' href='https://www.imdb.com/'>
             <img src='https://pic.onlinewebfonts.com/svg/img_435948.png' />
           </a>
         </div>
-        
+
         <div class='navbar-menu'>
-          <Link to='/' class='navbar-item is-tab'> Home </Link>
+          <Link to='/' class='navbar-item is-tab py-5'> Home </Link>
 
-          <Link to='/movies' class='navbar-item is-tab'> Movies </Link>
+          <Link to='/movies' class='navbar-item is-tab py-5'> Movies </Link>
 
-          <Link to='/names' class='navbar-item is-tab'> Names </Link>
+          <Link to='/names' class='navbar-item is-tab py-5'> Names </Link>
         </div>
 
         <div class='navbar-end'>
