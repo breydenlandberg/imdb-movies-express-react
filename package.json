@@ -6,8 +6,8 @@
   "scripts": {
     "start": "node app.js",
     "heroku-postbuild": "npm install --prefix react-ui && npm run build --prefix react-ui",
-    "separate-server-dev": "npx kill-port 9001 && NODE_ENV=development concurrently \"npx kill-port 9001 && nodemon app.js\" \"npm start --prefix react-ui\"",
-    "static-build-dev": "npx kill-port 9001 && npm install --prefix react-ui && npm run build --prefix react-ui && NODE_ENV=development node app.js"
+    "separate-server-dev": "npx kill-port 3000 && npx kill-port 9001 && NODE_ENV=development concurrently \"npx kill-port 9001 && nodemon app.js\" \"npm start --prefix react-ui\"",
+    "static-build-dev": "npx kill-port 3000 && npx kill-port 9001 && npm install --prefix react-ui && npm run build --prefix react-ui && NODE_ENV=development node app.js"
   },
   "keywords": [],
   "author": "breydenlandberg",

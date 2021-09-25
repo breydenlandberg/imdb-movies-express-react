@@ -28,7 +28,7 @@ router.get('/', async (request, response) => {
  */
 
 /*
- *  Get single movie resource by title using default movie title query (used for searches by movie title).
+ *
  */
 router.get('/movies-attributes', async (request, response) => {
   const getAllMoviesAttributesQuery = 'SELECT * FROM movie_attributes'
@@ -37,6 +37,24 @@ router.get('/movies-attributes', async (request, response) => {
 
   try {
     const { rows } = await client.query(getAllMoviesAttributesQuery)
+    return response.status(200).json(rows)
+  } catch (error) {
+    throw new Error(error)
+  }
+})
+
+/*
+ *
+ */
+router.get('/movies-attributes/:movie_id', async (request, response) => {
+  const movie_id = request.params.movie_id
+
+  const getMovieAttributesLikeIdQuery = `SELECT * FROM movie_attributes WHERE movie_id LIKE '${movie_id}'`
+
+  console.log(`Querying the Postgres database with: ${getMovieAttributesLikeIdQuery}`)
+
+  try {
+    const { rows } = await client.query(getMovieAttributesLikeIdQuery)
     return response.status(200).json(rows)
   } catch (error) {
     throw new Error(error)

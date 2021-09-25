@@ -16,13 +16,61 @@ const MovieLink = ({ data, movieAttributes }) => {
     movie_user_reviews,
     movie_critic_reviews
   } = data
-  const {
-    movie_genres,
-    movie_countries,
-    movie_directors,
-    movie_writers,
-    movie_actors
-  } = movieAttributes
+
+  // abstract away
+  const genres = movieAttributes
+  .filter(
+    (movieAttributes) => movieAttributes.movie_genres !== null
+  ).map(
+    (movieAttributes) => movieAttributes.movie_genres
+  ).join(
+    ', '
+  )
+
+  const countries = movieAttributes
+  .filter(
+    (movieAttributes) => movieAttributes.movie_countries !== null
+  ).map(
+    (movieAttributes) => movieAttributes.movie_countries
+  ).join(
+    ', '
+  )
+
+  const languages = movieAttributes
+  .filter(
+    (movieAttributes) => movieAttributes.movie_languages !== null
+  ).map(
+    (movieAttributes) => movieAttributes.movie_languages
+  ).join(
+    ', '
+  )
+
+  const directors = movieAttributes
+  .filter(
+    (movieAttributes) => movieAttributes.movie_directors !== null
+  ).map(
+    (movieAttributes) => movieAttributes.movie_directors
+  ).join(
+    ', '
+  )
+
+  const writers = movieAttributes
+  .filter(
+    (movieAttributes) => movieAttributes.movie_writers !== null
+  ).map(
+    (movieAttributes) => movieAttributes.movie_writers
+  ).join(
+    ', '
+  )
+
+  const actors = movieAttributes.
+  filter(
+    (movieAttributes) => movieAttributes.movie_actors !== null
+  ).map(
+    (movieAttributes) => movieAttributes.movie_actors
+  ).join(
+    ', '
+  )
 
   return (
     <div class='columns py-3'>
@@ -57,11 +105,12 @@ const MovieLink = ({ data, movieAttributes }) => {
       <div class='column'>
         <div class='box has-background-black-ter'>
           <p class='title is-3 has-text-light'> Additional movie information </p>
-          <p class='subtitle is-5 has-text-grey'> Genres: {movie_genres} </p>
-          <p class='subtitle is-5 has-text-grey'> Countries: {movie_countries} </p>
-          <p class='subtitle is-5 has-text-grey'> Directors: {movie_directors} </p>
-          <p class='subtitle is-5 has-text-grey'> Writers: {movie_writers} </p>
-          <p class='subtitle is-5 has-text-grey'> Actors: {movie_actors} </p>
+          <p class='subtitle is-5 has-text-grey'> Genres: {genres} </p>
+          <p class='subtitle is-5 has-text-grey'> Countries: {countries} </p>
+          <p class='subtitle is-5 has-text-grey'> Languages: {languages} </p>
+          <p class='subtitle is-5 has-text-grey'> Directors: {directors} </p>
+          <p class='subtitle is-5 has-text-grey'> Writers: {writers} </p>
+          <p class='subtitle is-5 has-text-grey'> Actors: {actors} </p>
         </div>
       </div>
     </div>

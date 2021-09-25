@@ -17,8 +17,9 @@ const Movies = ({ data, moviesAttributes }) => {
         {data.map((movie) =>
           <MovieLink
             data={movie}
+            // There should be multiple movieAttributes results!!! But this only finds one!!! Use SQL queries instead?
             movieAttributes={
-              moviesAttributes.find(
+              moviesAttributes.filter(
                 (movieAttributes) => movieAttributes.movie_id === movie.movie_id)
               }
           />
