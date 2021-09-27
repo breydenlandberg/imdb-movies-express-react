@@ -16,11 +16,11 @@ const Home = () => {
 
       <section class='section is-large has-background-danger'>
         <div class='columns is-centered is-full'>
-          <p class='title is-1 has-text-black-bis'> More text... </p>
+          <p class='title is-1 has-text-black-bis'> Put some working movies stuff here </p>
         </div>
 
         <div class='columns is-centered is-full'>
-          <p class='subtitle is-3 has-text-black-bis'> about something... </p>
+          <p class='subtitle is-3 has-text-black-bis'> and... </p>
         </div>
       </section>
 
