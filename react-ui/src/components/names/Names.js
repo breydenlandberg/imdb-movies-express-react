@@ -1,25 +1,45 @@
+import React, { useEffect, useState } from 'react'
+import namesService from '../../services/namesService'
+import LoadingScreen from '../LoadingScreen'
 import NameLink from './NameLink'
 
-const Names = ({ data }) => {
-  return (
-    <div>
-      <section class='section is-large has-background-black-bis'>
-        <div class='columns is-centered is-full'>
-          <p class='title is-1 has-text-light'> IMDb Names Page </p>
-        </div>
+const Names = () => {
+  const [names, setNames] = useState(undefined)
+  const [namesCharacters, setNamesCharacters] = useState(undefined)
 
-        <div class='columns is-centered is-full'>
-          <p class='subtitle is-3 has-text-light'> with subtitle text... </p>
-        </div>
-      </section>
+  useEffect(() => {
+    namesService.getDefaultAllNames()
+      .then((names) => setNames(names))
+      .catch((error) => console.error(error))
+  }, [])
 
-      <section class='section has-background-black-bis'>
-        {data.map((name) =>
-          <NameLink data={name} />
-        )}
-      </section>
-    </div>
-  )
+  console.log(names)
+
+  if (names === undefined) {
+    return (
+      <LoadingScreen />
+    )
+  } else {
+    return (
+      <div>
+        <section class='section is-large has-background-black-bis'>
+          <div class='columns is-centered is-full'>
+            <p class='title is-1 has-text-light'> IMDb Names Page </p>
+          </div>
+
+          <div class='columns is-centered is-full'>
+            <p class='subtitle is-3 has-text-light'> with subtitle text... </p>
+          </div>
+        </section>
+
+        <section class='section has-background-black-bis'>
+          {names.map((name) =>
+            <NameLink data={name} />
+          )}
+        </section>
+      </div>
+    )
+  }
 }
 
 export default Names

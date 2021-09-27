@@ -19,58 +19,58 @@ const MovieLink = ({ data, movieAttributes }) => {
 
   // abstract away
   const genres = movieAttributes
-  .filter(
-    (movieAttributes) => movieAttributes.movie_genres !== null
-  ).map(
-    (movieAttributes) => movieAttributes.movie_genres
-  ).join(
-    ', '
-  )
+    .filter(
+      (movieAttributes) => movieAttributes.movie_genres !== null
+    ).map(
+      (movieAttributes) => movieAttributes.movie_genres
+    ).join(
+      ', '
+    )
 
   const countries = movieAttributes
-  .filter(
-    (movieAttributes) => movieAttributes.movie_countries !== null
-  ).map(
-    (movieAttributes) => movieAttributes.movie_countries
-  ).join(
-    ', '
-  )
+    .filter(
+      (movieAttributes) => movieAttributes.movie_countries !== null
+    ).map(
+      (movieAttributes) => movieAttributes.movie_countries
+    ).join(
+      ', '
+    )
 
   const languages = movieAttributes
-  .filter(
-    (movieAttributes) => movieAttributes.movie_languages !== null
-  ).map(
-    (movieAttributes) => movieAttributes.movie_languages
-  ).join(
-    ', '
-  )
+    .filter(
+      (movieAttributes) => movieAttributes.movie_languages !== null
+    ).map(
+      (movieAttributes) => movieAttributes.movie_languages
+    ).join(
+      ', '
+    )
 
   const directors = movieAttributes
-  .filter(
-    (movieAttributes) => movieAttributes.movie_directors !== null
-  ).map(
-    (movieAttributes) => movieAttributes.movie_directors
-  ).join(
-    ', '
-  )
+    .filter(
+      (movieAttributes) => movieAttributes.movie_directors !== null
+    ).map(
+      (movieAttributes) => movieAttributes.movie_directors
+    ).join(
+      ', '
+    )
 
   const writers = movieAttributes
-  .filter(
-    (movieAttributes) => movieAttributes.movie_writers !== null
-  ).map(
-    (movieAttributes) => movieAttributes.movie_writers
-  ).join(
-    ', '
-  )
+    .filter(
+      (movieAttributes) => movieAttributes.movie_writers !== null
+    ).map(
+      (movieAttributes) => movieAttributes.movie_writers
+    ).join(
+      ', '
+    )
 
-  const actors = movieAttributes.
-  filter(
-    (movieAttributes) => movieAttributes.movie_actors !== null
-  ).map(
-    (movieAttributes) => movieAttributes.movie_actors
-  ).join(
-    ', '
-  )
+  const actors = movieAttributes
+    .filter(
+      (movieAttributes) => movieAttributes.movie_actors !== null
+    ).map(
+      (movieAttributes) => movieAttributes.movie_actors
+    ).join(
+      ', '
+    )
 
   return (
     <div class='columns py-3'>

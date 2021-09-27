@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import moviesService from '../../services/moviesService'
 import LoadingScreen from '../LoadingScreen'
-
 import MovieLink from './MovieLink'
 
-const Movies = ({ data, moviesAttributes }) => {
+const Movies = () => {
   const [movies, setMovies] = useState(undefined)
-  //const [movieAttributes, setMovieAttributes] = useState(undefined)
+  const [moviesAttributes, setMoviesAttributes] = useState(undefined)
 
   useEffect(() => {
     moviesService.getDefaultAllMovies()
@@ -14,9 +13,16 @@ const Movies = ({ data, moviesAttributes }) => {
       .catch((error) => console.error(error))
   }, [])
 
-  console.log(movies)
+  useEffect(() => {
+    moviesService.getDefaultAllMoviesAttributes()
+      .then((moviesAttributes) => setMoviesAttributes(moviesAttributes))
+      .catch((error) => console.error(error))
+  }, [])
 
-  if(movies === undefined) {
+  console.log(movies)
+  console.log(moviesAttributes)
+
+  if (movies === undefined || moviesAttributes === undefined) {
     return (
       <LoadingScreen />
     )
@@ -27,14 +33,14 @@ const Movies = ({ data, moviesAttributes }) => {
           <div class='columns is-centered is-full'>
             <p class='title is-1 has-text-light'> IMDb Movies Page </p>
           </div>
-  
+
           <div class='columns is-centered is-full'>
             <p class='subtitle is-3 has-text-light'> with subtitle text... </p>
           </div>
         </section>
-  
+
         <section class='section has-background-black-bis'>
-          {data.map((movie) =>
+          {movies.map((movie) =>
             <MovieLink
               data={movie}
               // There should be multiple movieAttributes results!!! But this only finds one!!! Use SQL queries instead?
