@@ -8,7 +8,7 @@ const path = require('path')
 const database = require('./database')
 const moviesRoutes = require('./routes/moviesRoutes')
 const namesRoutes = require('./routes/namesRoutes')
-const principalsRoutes = require('./routes/principalsRoutes')
+// const principalsRoutes = require('./routes/principalsRoutes')
 
 const app = express()
 // Environment variable.
@@ -43,7 +43,7 @@ app.use('/api/names', namesRoutes)
 /*
  *  Principals routes.
  */
-app.use('/api/principals', principalsRoutes)
+// app.use('/api/principals', principalsRoutes)
 
 app.listen(config.app.port, () => {
   console.log(`Application is running on port ${config.app.port}`)

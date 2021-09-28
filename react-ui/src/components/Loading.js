@@ -1,6 +1,9 @@
 import loading from './loading.gif'
 
-const LoadingScreen = () => {
+/*
+ *
+ */
+const Loading = () => {
   return (
     <div>
       <section class='section is-large has-background-black-bis'>
@@ -20,4 +23,4 @@ const LoadingScreen = () => {
   )
 }
 
-export default LoadingScreen
+export default Loading

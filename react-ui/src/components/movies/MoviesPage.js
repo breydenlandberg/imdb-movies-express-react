@@ -1,30 +1,29 @@
 import React, { useEffect, useState } from 'react'
 import moviesService from '../../services/moviesService'
-import LoadingScreen from '../LoadingScreen'
-import MovieLink from './MovieLink'
+import Loading from '../Loading'
+import MovieDisplayWrapper from './MovieDisplayWrapper'
 
-const Movies = () => {
+/*
+ *
+ */
+const MoviesPage = () => {
   const [movies, setMovies] = useState(undefined)
-  const [moviesAttributes, setMoviesAttributes] = useState(undefined)
 
+  /*
+   *
+   */
   useEffect(() => {
     moviesService.getDefaultAllMovies()
       .then((movies) => setMovies(movies))
       .catch((error) => console.error(error))
   }, [])
 
-  useEffect(() => {
-    moviesService.getDefaultAllMoviesAttributes()
-      .then((moviesAttributes) => setMoviesAttributes(moviesAttributes))
-      .catch((error) => console.error(error))
-  }, [])
-
-  console.log(movies)
-  console.log(moviesAttributes)
-
-  if (movies === undefined || moviesAttributes === undefined) {
+  /*
+   *
+   */
+  if (movies === undefined) {
     return (
-      <LoadingScreen />
+      <Loading />
     )
   } else {
     return (
@@ -41,14 +40,7 @@ const Movies = () => {
 
         <section class='section has-background-black-bis'>
           {movies.map((movie) =>
-            <MovieLink
-              data={movie}
-              // There should be multiple movieAttributes results!!! But this only finds one!!! Use SQL queries instead?
-              movieAttributes={
-                moviesAttributes.filter(
-                  (movieAttributes) => movieAttributes.movie_id === movie.movie_id)
-                }
-            />
+            <MovieDisplayWrapper movie={movie} />
           )}
         </section>
       </div>
@@ -56,4 +48,4 @@ const Movies = () => {
   }
 }
 
-export default Movies
+export default MoviesPage

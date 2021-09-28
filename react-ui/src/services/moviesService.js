@@ -13,6 +13,16 @@ const getDefaultAllMovies = () => {
 }
 
 /*
+ *  Single movie
+ */
+const getDefaultSingleMovie = (movie_id) => {
+  return axios
+    .get(`${baseURL}/${movie_id}`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error))
+}
+
+/*
  *  Movie attributes.
  */
 const getDefaultAllMoviesAttributes = () => {
@@ -22,4 +32,14 @@ const getDefaultAllMoviesAttributes = () => {
     .catch((error) => console.log(error))
 }
 
-export default { getDefaultAllMovies, getDefaultAllMoviesAttributes }
+/*
+ *  Movie attributes.
+ */
+const getDefaultSingleMovieAttributes = (movie_id) => {
+  return axios
+    .get(`${baseURL}/movies-attributes/${movie_id}`)
+    .then((response) => response.data)
+    .catch((error) => console.log(error))
+}
+
+export default { getDefaultAllMovies, getDefaultSingleMovie, getDefaultAllMoviesAttributes, getDefaultSingleMovieAttributes }

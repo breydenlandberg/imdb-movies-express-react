@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import namesService from '../../services/namesService'
-import LoadingScreen from '../LoadingScreen'
+import Loading from '../Loading'
 import NameLink from './NameLink'
 
 const Names = () => {
@@ -17,7 +17,7 @@ const Names = () => {
 
   if (names === undefined) {
     return (
-      <LoadingScreen />
+      <Loading />
     )
   } else {
     return (

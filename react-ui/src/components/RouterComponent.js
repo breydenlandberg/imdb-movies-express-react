@@ -4,14 +4,14 @@ import {
   Route,
   Link
 } from 'react-router-dom'
-import Home from './Home'
 import MoviePage from './movies/MoviePage'
-import Movies from './movies/Movies'
+import MoviesPage from './movies/MoviesPage'
 import NamePage from './names/NamePage'
 import Names from './names/Names'
+import Home from './Home'
 
 /*
- *  CONTEXT! CONTEXT!! CONTEXT!!!
+ *
  */
 const RouterComponent = () => {
   return (
@@ -23,12 +23,12 @@ const RouterComponent = () => {
           </a>
         </div>
 
-        <div class='navbar-menu'>
-          <Link to='/' class='navbar-item is-tab py-5'> Home </Link>
+        <div class='navbar-start'>
+          <Link to='/' class='navbar-item has-text-link is-tab py-5'> Home </Link>
 
-          <Link to='/movies' class='navbar-item is-tab py-5'> Movies </Link>
+          <Link to='/movies' class='navbar-item has-text-link is-tab py-5'> Movies </Link>
 
-          <Link to='/names' class='navbar-item is-tab py-5'> Names </Link>
+          <Link to='/names' class='navbar-item has-text-link is-tab py-5'> Names </Link>
         </div>
 
         <div class='navbar-end'>
@@ -46,15 +46,15 @@ const RouterComponent = () => {
 
       <Switch>
         <Route path='/movies/:movie_id'>
-          {/* <MoviePage data={movies} /> */}
+          <MoviePage />
         </Route>
 
         <Route path='/movies'>
-          <Movies />
+          <MoviesPage />
         </Route>
 
         <Route path='/names/:name_id'>
-          {/* <NamePage data={names} /> */}
+          <NamePage />
         </Route>
 
         <Route path='/names'>
