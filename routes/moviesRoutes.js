@@ -11,7 +11,7 @@ const router = express.Router()
  *  Get all movies resources using default movies query.
  */
 router.get('/', async (request, response) => {
-  const getAllMoviesQuery = 'SELECT * FROM imdb_movies WHERE movie_critic_reviews IS NOT NULL ORDER BY movie_critic_reviews DESC FETCH FIRST 100 ROWS ONLY'
+  const getAllMoviesQuery = 'SELECT * FROM imdb_movies WHERE movie_description IS NOT NULL ORDER BY length(movie_description) DESC FETCH FIRST 100 ROWS ONLY'
 
   console.log(`Querying the Postgres database with: ${getAllMoviesQuery}`)
 

@@ -44,7 +44,10 @@ const MovieLinkBox = ({ movie }) => {
 
       <p class='subtitle is-5 has-text-grey'> Released in {movie_release_year} </p>
       <p class='subtitle is-5 has-text-grey'> {movie_description} </p>
-      <p class='subtitle is-5 has-text-grey'> Number of votes: {movie_votes} | Average vote score: {movie_avg_vote} | Number of user reviews: {movie_user_reviews} | Number of critic reviews: {movie_critic_reviews} </p>
+      <p class='subtitle is-5 has-text-grey'> User votes: {movie_votes} </p>
+      <p class='subtitle is-5 has-text-grey'> Average vote score: {movie_avg_vote} </p>
+      <p class='subtitle is-5 has-text-grey'> User reviews: {movie_user_reviews} </p>
+      <p class='subtitle is-5 has-text-grey'> Critic reviews: {movie_critic_reviews} </p>
     </div>
   )
 }

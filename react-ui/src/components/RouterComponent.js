@@ -7,7 +7,7 @@ import {
 import MoviePage from './movies/MoviePage'
 import MoviesPage from './movies/MoviesPage'
 import NamePage from './names/NamePage'
-import Names from './names/Names'
+import NamesPage from './names/NamesPage'
 import Home from './Home'
 
 /*
@@ -58,7 +58,7 @@ const RouterComponent = () => {
         </Route>
 
         <Route path='/names'>
-          <Names />
+          <NamesPage />
         </Route>
 
         <Route path='/'>
