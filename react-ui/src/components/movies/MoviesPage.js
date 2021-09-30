@@ -34,7 +34,7 @@ const MoviesPage = () => {
           </div>
 
           <div class='columns is-centered is-full'>
-            <p class='subtitle is-3 has-text-light'> Click on a movie's title to learn more about the cast! </p>
+            <p class='subtitle is-3 has-text-light'> Click on a movie's title to learn more about the movie and the cast! </p>
           </div>
         </section>
 

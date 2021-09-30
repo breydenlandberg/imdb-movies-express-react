@@ -20,7 +20,6 @@ const MoviePage = () => {
   } = movieData
 
   const [movieNamesPrincipals, setMovieNamesPrincipals] = useState(undefined)
-
   /*
    *
    */
@@ -88,26 +87,15 @@ const MoviePage = () => {
         <section class='section has-background-black-bis'>
           <div class='container py-3'>
             <div class='box has-background-black-ter'>
-              <p class='subtitle is-5 has-text-grey-light'> Goes for
-                <span class='subtitle is-5 has-text-white'> {movie_duration} minutes </span>
+              {movieNamesPrincipals.map((namePrincipals) =>
+              <p class='subtitle is-5 has-text-grey-light'>
+                <span class='subtitle is-5 has-text-white'> {namePrincipals.current_name} </span>
+                has the role of
+                <span class='subtitle is-5 has-text-white'> {namePrincipals.name_role} </span>
+                and plays
+                <span class='subtitle is-5 has-text-white'> {namePrincipals.name_characters} </span>
               </p>
-              <p class='subtitle is-5 has-text-grey-light'> Produced by
-                <span class='subtitle is-5 has-text-white'> {movie_production_company} </span>
-              </p>
-              <p class='subtitle is-5 has-text-grey-light'> Description:
-                <p class='subtitle is-5 has-text-white'> {movie_description} </p>
-              </p>
-              <p class='subtitle is-5 has-text-grey-light'> Users voted on this movie
-                <span class='subtitle is-5 has-text-white'> {movie_votes} </span>
-                times, and the average user vote has a score of
-                <span class='subtitle is-5 has-text-white'> {movie_avg_vote} </span>
-              </p>
-              <p class='subtitle is-5 has-text-grey-light'> There are
-                <span class='subtitle is-5 has-text-white'> {movie_user_reviews} </span>
-                user reviews for this movie, and
-                <span class='subtitle is-5 has-text-white'> {movie_critic_reviews} </span>
-                critic reviews
-              </p>
+              )}
             </div>
           </div>
         </section>

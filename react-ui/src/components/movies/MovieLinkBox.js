@@ -26,6 +26,7 @@ const MovieLinkBox = ({ movie }) => {
         <Link to={{
           pathname: `movies/${movie_id}`,
           movieProps: {
+            movie_id,
             movie_title,
             movie_release_year,
             movie_duration,
