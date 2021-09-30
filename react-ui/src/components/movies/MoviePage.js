@@ -88,13 +88,13 @@ const MoviePage = () => {
           <div class='container py-3'>
             <div class='box has-background-black-ter'>
               {movieNamesPrincipals.map((namePrincipals) =>
-              <p class='subtitle is-5 has-text-grey-light'>
-                <span class='subtitle is-5 has-text-white'> {namePrincipals.current_name} </span>
-                has the role of
-                <span class='subtitle is-5 has-text-white'> {namePrincipals.name_role} </span>
-                and plays
-                <span class='subtitle is-5 has-text-white'> {namePrincipals.name_characters} </span>
-              </p>
+                <p class='subtitle is-5 has-text-grey-light'>
+                  <span class='subtitle is-5 has-text-white'> {namePrincipals.current_name} </span>
+                  has the role of
+                  <span class='subtitle is-5 has-text-white'> {namePrincipals.name_role} </span>
+                  and plays
+                  <span class='subtitle is-5 has-text-white'> {namePrincipals.name_characters} </span>
+                </p>
               )}
             </div>
           </div>
