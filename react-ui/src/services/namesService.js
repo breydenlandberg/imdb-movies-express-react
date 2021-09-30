@@ -38,4 +38,13 @@ const getDefaultSingleNameCharacters = (name_id) => {
     .catch((error) => console.error(error))
 }
 
-export default { getDefaultAllNames, getDefaultSingleName, getDefaultAllNamesCharacters, getDefaultSingleNameCharacters }
+/*
+ *  SHOULD THIS BE IN moviesService?
+ */
+const getCustomMovieNamesPrincipals = (movie_id) => {
+  return axios.get(`${baseURL}/custom-query/movie-names-roles-characters/${movie_id}`)
+    .then((response) => response.data)
+    .catch((error) => console.error(error))
+}
+
+export default { getDefaultAllNames, getDefaultSingleName, getDefaultAllNamesCharacters, getDefaultSingleNameCharacters, getCustomMovieNamesPrincipals }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import namesService from '../../services/namesService'
 import Loading from '../Loading'
 import { Link } from 'react-router-dom'
@@ -40,7 +40,7 @@ const NameLinkBox = ({ name }) => {
     return (
       <div class='container py-3'>
         <div class='box has-background-black-ter'>
-          <p class='title is-3 has-text-light'>
+          <p class='title is-3 has-text-lighter'>
             <Link to={{
               pathname: `names/${name_id}`,
               nameProps: {

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import namesService from '../../services/namesService'
 import Loading from '../Loading'
 import NameLinkBox from './NameLinkBox'

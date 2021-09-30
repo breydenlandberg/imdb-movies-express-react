@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import moviesService from '../../services/moviesService'
 import Loading from '../Loading'
 
@@ -76,7 +76,7 @@ const MovieAttributesBox = ({ movie_id }) => {
 
     return (
       <div class='box has-background-black-ter'>
-        <p class='title is-3 has-text-light'> Additional movie information </p>
+        <p class='title is-3 has-text-grey-light'> Additional movie information </p>
         <p class='subtitle is-5 has-text-grey'> Genres: {genres.join(', ')} </p>
         <p class='subtitle is-5 has-text-grey'> Countries: {countries.join(', ')} </p>
         <p class='subtitle is-5 has-text-grey'> Languages: {languages.join(', ')} </p>
