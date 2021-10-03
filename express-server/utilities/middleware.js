@@ -2,14 +2,16 @@
  *  request.params not showing?
  */
 const requestLogger = (request, response, next) => {
-  console.log('\n========== REQUEST ==========')
-  console.log(request.method, request.path, request.params)
-  console.log(request.body)
+  if (process.env.NODE_ENV === 'development') {
+    console.log('\n========== REQUEST ==========')
+    console.log(request.method, request.path, request.params)
+    console.log(request.body)
 
-  console.log('\n========== RESPONSE ==========')
-  // console.log(response)
+    console.log('\n========== RESPONSE ==========')
+    // console.log(response)
 
-  console.log('\n========== ========== ==========\n')
+    console.log('\n========== ========== ==========\n')
+  }
 
   next()
 }

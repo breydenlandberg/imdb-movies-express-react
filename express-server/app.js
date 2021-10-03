@@ -5,8 +5,8 @@ const express = require('express')
 const cors = require('cors')
 const database = require('./utilities/database')
 const middleware = require('./utilities/middleware')
-const moviesRoutes = require('./api/routes/moviesRoutes')
-const namesRoutes = require('./api/routes/namesRoutes')
+const moviesRoutes = require('./controllers/API-routes/moviesRoutes')
+const namesRoutes = require('./controllers/API-routes/namesRoutes')
 
 const app = express()
 
@@ -35,7 +35,7 @@ app.use('/api/movies', moviesRoutes)
  */
 app.use('/api/names', namesRoutes)
 
-/*
+/*e
  *  Use error handling middleware.
  *
  *  NOT WORKING.

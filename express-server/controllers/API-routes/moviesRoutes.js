@@ -25,6 +25,8 @@ const router = express.Router()
  *  NOTICE: Ordered by endpoint URL length due to Express precedence mechanics.
  *
  *  NOTICE: app.get('*')?
+ *
+ *  NOTICE: data models (define models in server so that a proper data representation can be passed to the front end instead of just a JSON object)
  */
 
 /*

@@ -5,7 +5,8 @@
 /react-ui/.pnp.js
 
 # testing
-/requests
+/coverage
+/express-server/requests
 /react-ui/coverage
 
 # production

@@ -12,6 +12,18 @@ const env = process.env
  */
 
 /*
+ *  Test configuration.
+ */
+const test = {
+  app: {
+    port: 9001
+  },
+  database: {
+    connectionString: 'postgresql://postgres:123@localhost:5432/postgres-imdb-movies'
+  }
+}
+
+/*
  *  Development configuration.
  */
 const development = {
@@ -39,6 +51,7 @@ const production = {
  *  Choose which configuration is used based on the process.env.NODE_ENV variable.
  */
 const config = {
+  test,
   development,
   production
 }
