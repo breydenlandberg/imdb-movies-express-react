@@ -20,16 +20,15 @@ const MoviePage = () => {
   } = movieData
 
   const [movieNamesPrincipals, setMovieNamesPrincipals] = useState(undefined)
+
   /*
    *
    */
   useEffect(() => {
-    namesService.getCustomMovieNamesPrincipals(movie_id)
+    namesService.getMovieNamesPrincipalsById(movie_id)
       .then((customQueryResults) => setMovieNamesPrincipals(customQueryResults))
       .catch((error) => console.error(error))
   }, [])
-
-  console.log(movieNamesPrincipals)
 
   /*
    *

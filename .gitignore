@@ -5,6 +5,7 @@
 /react-ui/.pnp.js
 
 # testing
+/requests
 /react-ui/coverage
 
 # production

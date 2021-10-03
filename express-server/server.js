@@ -1,7 +1,7 @@
 /*
  *  Setup.
  */
-const config = require('./config')
+const config = require('./utilities/config')
 const app = require('./app')
 
 /*

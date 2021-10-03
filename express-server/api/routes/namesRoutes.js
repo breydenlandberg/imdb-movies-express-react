@@ -2,7 +2,7 @@
  *  Setup, including database client and router.
  */
 const express = require('express')
-const database = require('../../database')
+const database = require('../../utilities/database')
 const client = database.client
 
 const router = express.Router()
@@ -23,6 +23,8 @@ const router = express.Router()
  *  NOTICE: Add user table to Heroku Postgres database?
  *
  *  NOTICE: Ordered by endpoint URL length due to Express precedence mechanics.
+ *
+ *  NOTICE: app.get('*')?
  */
 
 /*
