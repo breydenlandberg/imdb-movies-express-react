@@ -5,7 +5,8 @@ const config = require('./config')
 const { Client } = require('pg')
 
 /*
- *  Client.
+ *  Set client to the specified configuration database -
+ *  local Postgres db for development environment, remote Postgres db for production environment.
  */
 const client = new Client({
   connectionString: config.database.connectionString

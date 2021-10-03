@@ -1,14 +1,32 @@
 /*
- *  Setup.
+ *  Setup, including database client and router.
  */
 const express = require('express')
-const database = require('../database')
+const database = require('../../database')
 const client = database.client
 
 const router = express.Router()
 
 /*
- *  Get all names resources using default names query.
+ *  NOTICE: All endpoint requests are asynchronous because querying a remote database may take quite some time before rows are returned.
+ *
+ *  NOTICE: WRITE ERROR HANDLING MIDDLEWARE!!!
+ *
+ *  NOTICE: REFACTOR QUERIES INTO STORED PROCEDURES
+ * 
+ *  NOTICE: Implement request.query over request.params in some endpoints.
+ * 
+ *  NOTICE: Some custom queries should be in moviesRoutes.js and vice versa.
+ * 
+ *  NOTICE: Describe common structure for all endpoint code blocks.
+ */
+
+/*
+ *  BEGIN SQL queries on name resources.
+ */
+
+/*
+ *  DESCRIPTION: Get all names resources using default names query.
  */
 router.get('/', async (request, response) => {
   const defaultAllNamesQuery = 'SELECT * FROM imdb_names FETCH FIRST 100 ROWS ONLY'

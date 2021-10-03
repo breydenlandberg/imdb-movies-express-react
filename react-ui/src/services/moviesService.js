@@ -13,7 +13,11 @@ const getDefaultAllMovies = () => {
 }
 
 /*
- *  Single movie
+ *  DESCRIPTION: 
+ *
+ *  @param {type}
+ * 
+ *  @returns {Promise}
  */
 const getDefaultSingleMovie = (movie_id) => {
   return axios
@@ -27,7 +31,7 @@ const getDefaultSingleMovie = (movie_id) => {
  */
 const getDefaultAllMoviesAttributes = () => {
   return axios
-    .get(`${baseURL}/movies-attributes`)
+    .get(`${baseURL}/attributes`)
     .then((response) => response.data)
     .catch((error) => console.log(error))
 }
@@ -37,9 +41,19 @@ const getDefaultAllMoviesAttributes = () => {
  */
 const getDefaultSingleMovieAttributes = (movie_id) => {
   return axios
-    .get(`${baseURL}/movies-attributes/${movie_id}`)
+    .get(`${baseURL}/attributes/${movie_id}`)
     .then((response) => response.data)
     .catch((error) => console.log(error))
 }
 
-export default { getDefaultAllMovies, getDefaultSingleMovie, getDefaultAllMoviesAttributes, getDefaultSingleMovieAttributes }
+/*
+ *  Movie attributes.
+ */
+const getNameAllMoviesRoles = (name_id) => {
+  return axios
+    .get(`${baseURL}/custom-query/name-movies-roles/${name_id}`)
+    .then((response) => response.data)
+    .catch((error) => console.log(error))
+}
+
+export default { getDefaultAllMovies, getDefaultSingleMovie, getDefaultAllMoviesAttributes, getDefaultSingleMovieAttributes, getNameAllMoviesRoles }
