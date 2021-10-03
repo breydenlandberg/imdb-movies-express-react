@@ -13,7 +13,7 @@ const NamesPage = () => {
    *
    */
   useEffect(() => {
-    namesService.getDefaultAllNames()
+    namesService.getAllNames()
       .then((names) => setNames(names))
       .catch((error) => console.error(error))
   }, [])

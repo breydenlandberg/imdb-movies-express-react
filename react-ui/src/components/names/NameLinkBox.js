@@ -22,7 +22,7 @@ const NameLinkBox = ({ name }) => {
    *
    */
   useEffect(() => {
-    namesService.getDefaultSingleNameCharacters(name_id)
+    namesService.getSingleNameCharactersById(name_id)
       .then((nameCharacters) => setNameCharacters(nameCharacters))
       .catch((error) => console.error(error))
   }, [])

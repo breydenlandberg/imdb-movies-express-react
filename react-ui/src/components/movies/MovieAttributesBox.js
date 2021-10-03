@@ -12,7 +12,7 @@ const MovieAttributesBox = ({ movie_id }) => {
    *
    */
   useEffect(() => {
-    moviesService.getDefaultSingleMovieAttributes(movie_id)
+    moviesService.getSingleMovieAttributesById(movie_id)
       .then((movieAttributes) => setMovieAttributes(movieAttributes))
       .catch((error) => console.error(error))
   }, [])

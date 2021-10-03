@@ -13,16 +13,16 @@ const router = express.Router()
  *  NOTICE: WRITE ERROR HANDLING MIDDLEWARE!!!
  *
  *  NOTICE: REFACTOR QUERIES INTO STORED PROCEDURES
- * 
+ *
  *  NOTICE: Implement request.query over request.params in some endpoints.
- * 
+ *
  *  NOTICE: Some custom queries should be in namesRoutes.js and vice versa.
- * 
+ *
  *  NOTICE: Describe common structure for all endpoint code blocks.
- */
-
-/*
- *  BEGIN SQL queries on movie resources.
+ *
+ *  NOTICE: Add user table to Heroku Postgres database?
+ *
+ *  NOTICE: Ordered by endpoint URL length due to Express precedence mechanics.
  */
 
 /*
@@ -30,7 +30,7 @@ const router = express.Router()
  *
  *  FULL ROUTE: {baseURL}/api/movies/
  *
- *  QUERY RETURNS: All movie resources.
+ *  QUERY RETURNS: All movies resources.
  */
 router.get('/', async (request, response) => {
   const queryGetAllMovies = 'SELECT * FROM imdb_movies WHERE movie_description IS NOT NULL ORDER BY length(movie_description) DESC FETCH FIRST 100 ROWS ONLY'
@@ -44,36 +44,6 @@ router.get('/', async (request, response) => {
     throw new Error(error)
   }
 })
-
-/*
- *  DESCRIPTION: ENDPOINT for an individual movie.
- *
- *  FULL ROUTE: {baseURL}/api/movies/{movie_id}
- *
- *  QUERY RETURNS: Single movie resource associated with the matching movie_id.
- */
-router.get('/:movie_id', async (request, response) => {
-  const movie_id = request.params.movie_id
-
-  const queryGetMovieLikeId = `SELECT * FROM imdb_movies WHERE movie_id LIKE '${movie_id}'`
-
-  console.log(`Querying the Postgres database with: ${queryGetMovieLikeId}`)
-
-  try {
-    const { rows } = await client.query(queryGetMovieLikeId)
-    return response.status(200).json(rows)
-  } catch (error) {
-    throw new Error(error)
-  }
-})
-
-/*
- *  END SQL queries on movie resources.
- */
-
-/*
- *  BEGIN SQL queries on movie attribute resources.
- */
 
 /*
  *  DESCRIPTION: ENDPOINT for all movies attributes.
@@ -118,21 +88,13 @@ router.get('/attributes/:movie_id', async (request, response) => {
 })
 
 /*
- *  END SQL queries on movie attribute resources.
- */
-
-/*
- *  BEGIN advanced SQL queries on movie or movie attribute resources.
- */
-
-/*
  *  DESCRIPTION: ENDPOINT for all movies and roles that a single name has been in.
  *
- *  FULL ROUTE: {baseURL}/api/movies/custom-query/name-movies-roles/{name_id}
+ *  FULL ROUTE: {baseURL}/api/movies/advanced-query/name-movies-roles/{name_id}
  *
  *  QUERY RETURNS: All movies and roles resources associated with the matching name_id.
  */
-router.get('/custom-query/name-movies-roles/:name_id', async (request, response) => {
+router.get('/advanced-query/name-movies-roles/:name_id', async (request, response) => {
   const name_id = request.params.name_id
 
   // Perhaps don't need to join imdb_names?
@@ -153,7 +115,25 @@ router.get('/custom-query/name-movies-roles/:name_id', async (request, response)
 })
 
 /*
- *  END advanced SQL queries on movie or movie attribute resources.
+ *  DESCRIPTION: ENDPOINT for an individual movie.
+ *
+ *  FULL ROUTE: {baseURL}/api/movies/{movie_id}
+ *
+ *  QUERY RETURNS: Single movie resource associated with the matching movie_id.
  */
+router.get('/:movie_id', async (request, response) => {
+  const movie_id = request.params.movie_id
+
+  const queryGetMovieLikeId = `SELECT * FROM imdb_movies WHERE movie_id LIKE '${movie_id}'`
+
+  console.log(`Querying the Postgres database with: ${queryGetMovieLikeId}`)
+
+  try {
+    const { rows } = await client.query(queryGetMovieLikeId)
+    return response.status(200).json(rows)
+  } catch (error) {
+    throw new Error(error)
+  }
+})
 
 module.exports = router

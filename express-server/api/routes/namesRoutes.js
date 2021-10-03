@@ -13,28 +13,32 @@ const router = express.Router()
  *  NOTICE: WRITE ERROR HANDLING MIDDLEWARE!!!
  *
  *  NOTICE: REFACTOR QUERIES INTO STORED PROCEDURES
- * 
+ *
  *  NOTICE: Implement request.query over request.params in some endpoints.
- * 
+ *
  *  NOTICE: Some custom queries should be in moviesRoutes.js and vice versa.
- * 
+ *
  *  NOTICE: Describe common structure for all endpoint code blocks.
+ *
+ *  NOTICE: Add user table to Heroku Postgres database?
+ *
+ *  NOTICE: Ordered by endpoint URL length due to Express precedence mechanics.
  */
 
 /*
- *  BEGIN SQL queries on name resources.
- */
-
-/*
- *  DESCRIPTION: Get all names resources using default names query.
+ *  DESCRIPTION: ENDPOINT for all names.
+ *
+ *  FULL ROUTE: {baseURL}/api/names/
+ *
+ *  QUERY RETURNS: All names resources.
  */
 router.get('/', async (request, response) => {
-  const defaultAllNamesQuery = 'SELECT * FROM imdb_names FETCH FIRST 100 ROWS ONLY'
+  const queryGetAllNames = 'SELECT * FROM imdb_names FETCH FIRST 100 ROWS ONLY'
 
-  console.log(`Querying the Postgres database with: ${defaultAllNamesQuery}`)
+  console.log(`Querying the Postgres database with: ${queryGetAllNames}`)
 
   try {
-    const { rows } = await client.query(defaultAllNamesQuery)
+    const { rows } = await client.query(queryGetAllNames)
     return response.status(200).json(rows)
   } catch (error) {
     throw new Error(error)
@@ -42,34 +46,41 @@ router.get('/', async (request, response) => {
 })
 
 /*
- *  principal_characters table SQL queries below here.
+ *  DESCRIPTION: ENDPOINT for all names characters.
+ *
+ *  FULL ROUTE: {baseURL}/api/names/characters
+ *
+ *  QUERY RETURNS: All names characters resources.
  */
+router.get('/characters', async (request, response) => {
+  const queryGetAllNamesCharacters = 'SELECT * FROM imdb_principals'
 
-/*
- *  Get single name resource by id using default name id query.
- */
-router.get('/names-characters', async (request, response) => {
-  const defaultAllNamesCharactersQuery = 'SELECT * FROM imdb_principals'
-
-  console.log(`Querying the Postgres database with: ${defaultAllNamesCharactersQuery}`)
+  console.log(`Querying the Postgres database with: ${queryGetAllNamesCharacters}`)
 
   try {
-    const { rows } = await client.query(defaultAllNamesCharactersQuery)
+    const { rows } = await client.query(queryGetAllNamesCharacters)
     return response.status(200).json(rows)
   } catch (error) {
     throw new Error(error)
   }
 })
 
-router.get('/names-characters/:name_id', async (request, response) => {
+/*
+ *  DESCRIPTION: ENDPOINT for all name characters for a single name.
+ *
+ *  FULL ROUTE: {baseURL}/api/names/characters/{name_id}
+ *
+ *  QUERY RETURNS: All name characters resources associated with the matching name_id.
+ */
+router.get('/characters/:name_id', async (request, response) => {
   const name_id = request.params.name_id
 
-  const defaultSingleNameCharactersQuery = `SELECT * FROM imdb_principals WHERE name_id LIKE '${name_id}'`
+  const queryGetNameCharactersLikeId = `SELECT * FROM imdb_principals WHERE name_id LIKE '${name_id}'`
 
-  console.log(`Querying the Postgres database with: ${defaultSingleNameCharactersQuery}`)
+  console.log(`Querying the Postgres database with: ${queryGetNameCharactersLikeId}`)
 
   try {
-    const { rows } = await client.query(defaultSingleNameCharactersQuery)
+    const { rows } = await client.query(queryGetNameCharactersLikeId)
     return response.status(200).json(rows)
   } catch (error) {
     throw new Error(error)
@@ -77,28 +88,26 @@ router.get('/names-characters/:name_id', async (request, response) => {
 })
 
 /*
- *  principal_characters table SQL queries above here.
- */
-
-/*
- *  Get all names, their role, and the characters they play for a specific movie by movie id using a custom query.
+ *  DESCRIPTION: ENDPOINT for all names, their roles, and their characters for a single movie.
  *
- *  SHOULD THIS BE IN moviesRoutes?
+ *  FULL ROUTE: {baseURL}/api/movies/advanced-query/movie-names-roles-characters/{movie_id}
+ *
+ *  QUERY RETURNS: All names, roles, and characters resources associated with the matching movie_id.
  */
-router.get('/custom-query/movie-names-roles-characters/:movie_id', async (request, response) => {
+router.get('/advanced-query/movie-names-roles-characters/:movie_id', async (request, response) => {
   const movie_id = request.params.movie_id
 
-  const customMovieNamesRolesCharactersQuery = `SELECT imdb_names.current_name, imdb_principals.name_role, principal_characters.name_characters
-                                                FROM imdb_names
-                                                INNER JOIN imdb_principals ON imdb_names.name_id = imdb_principals.name_id
-                                                LEFT JOIN principal_characters ON imdb_principals.name_id = principal_characters.name_id
-                                                WHERE imdb_principals.movie_id LIKE '${movie_id}'
-                                                ORDER BY current_name ASC`
+  const queryGetMovieNamesRolesCharacters = `SELECT imdb_names.current_name, imdb_principals.name_role, principal_characters.name_characters
+                                             FROM imdb_names
+                                             INNER JOIN imdb_principals ON imdb_names.name_id = imdb_principals.name_id
+                                             LEFT JOIN principal_characters ON imdb_principals.name_id = principal_characters.name_id
+                                             WHERE imdb_principals.movie_id LIKE '${movie_id}'
+                                             ORDER BY current_name ASC`
 
-  console.log(`Querying the Postgres database with: ${customMovieNamesRolesCharactersQuery}`)
+  console.log(`Querying the Postgres database with: ${queryGetMovieNamesRolesCharacters}`)
 
   try {
-    const { rows } = await client.query(customMovieNamesRolesCharactersQuery)
+    const { rows } = await client.query(queryGetMovieNamesRolesCharacters)
     console.log(rows)
     return response.status(200).json(rows)
   } catch (error) {
@@ -107,17 +116,21 @@ router.get('/custom-query/movie-names-roles-characters/:movie_id', async (reques
 })
 
 /*
- *  Get single name resource by id using default name id query.
+ *  DESCRIPTION: ENDPOINT for an individual name.
+ *
+ *  FULL ROUTE: {baseURL}/api/names/{name_id}
+ *
+ *  QUERY RETURNS: Single name resource associated with the matching name_id.
  */
 router.get('/:name_id', async (request, response) => {
   const name_id = request.params.name_id
 
-  const defaultSingleNameQuery = `SELECT * FROM imdb_names WHERE name_id LIKE '${name_id}'`
+  const queryGetNameLikeId = `SELECT * FROM imdb_names WHERE name_id LIKE '${name_id}'`
 
-  console.log(`Querying the Postgres database with: ${defaultSingleNameQuery}`)
+  console.log(`Querying the Postgres database with: ${queryGetNameLikeId}`)
 
   try {
-    const { rows } = await client.query(defaultSingleNameQuery)
+    const { rows } = await client.query(queryGetNameLikeId)
     return response.status(200).json(rows)
   } catch (error) {
     throw new Error(error)

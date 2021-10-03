@@ -13,7 +13,7 @@ const MoviesPage = () => {
    *
    */
   useEffect(() => {
-    moviesService.getDefaultAllMovies()
+    moviesService.getAllMovies()
       .then((movies) => setMovies(movies))
       .catch((error) => console.error(error))
   }, [])
