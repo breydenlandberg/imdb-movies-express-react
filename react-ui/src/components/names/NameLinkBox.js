@@ -27,8 +27,6 @@ const NameLinkBox = ({ name }) => {
       .catch((error) => console.error(error))
   }, [])
 
-  console.log(nameCharacters)
-
   /*
    *
    */

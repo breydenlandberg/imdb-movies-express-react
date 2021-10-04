@@ -35,7 +35,7 @@ app.use('/api/movies', moviesRoutes)
  */
 app.use('/api/names', namesRoutes)
 
-/*e
+/* e
  *  Use error handling middleware.
  *
  *  NOT WORKING.
